@@ -72,6 +72,12 @@ public class DataGenerator {
         return pickone(new String[] {"Payroll   ", "Payables  "});
     }
 
+    public String transactionCode() {
+        return pickone(new String[] {"22", "32", "27", "37"});
+    }
+
+    
+
     public String padleft(String data, char c, int len) {
         while (data.length() < len) {
             data = c + data;
