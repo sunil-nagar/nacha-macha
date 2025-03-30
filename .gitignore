@@ -4,6 +4,7 @@ bin/
 *.db
 *.db-journal
 testfiles/
+temp/
 
 # Compiled class file
 *.class

@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 
 import nm.db.DbConnection;
 import nm.db.DbService;
+import nm.fbqs.FBQueueSystem;
 import nm.model.NachaFileTransaction;
 import nm.parse.NachaFileLine;
 import nm.parse.NachaLineParser;
@@ -45,6 +46,12 @@ public class Test {
         }
     }
 
+    public static FBQueueSystem queue(String origin) throws IOException {
+        FBQueueSystem fbqs = new FBQueueSystem(origin);
+        fbqs.init();
+        return fbqs;
+    }
+
     public static void main(String[] args) {
         try {
             Timer.start("main");
@@ -56,12 +63,16 @@ public class Test {
             Timer.start("reset");
             dbService.reset();
             Timer.stop("reset");
-            String[] files = NachaParser.getFiles("20250330", "001");
-            String nachaFileDir = "/Users/nagars/Dev/nacha-macha/testfiles/";
-            for (int i = 0; i < files.length; i++) {
+            // String[] files = NachaParser.getFiles("20250330", "001");
+            // String nachaFileDir = "/Users/nagars/Dev/nacha-macha/testfiles/";
+            FBQueueSystem fbqs = queue("/Users/nagars/Dev/nacha-macha/testfiles/");
+            // for (int i = 0; i < files.length; i++) {
+            String file = "";
+            while ((file = fbqs.next()) != null) {
                 Timer.start("file");
-                String filename = files[i];
-                String filePath = nachaFileDir + "/" + filename;
+                // String filename = files[i];
+                // String filePath = nachaFileDir + "/" + filename;
+                String filePath = file;
                 processFile(filePath, dbconn, dbService);
                 Timer.stop("file");
             }
