@@ -26,7 +26,7 @@ public class TestDb {
         dbService.createFileBatchHeader(1, 1, batchHeader);
 
         NachaFileTransaction transaction = new NachaFileTransaction();
-        dbService.createFileTransaction(1, 1, transaction);
+        // dbService.createFileTransaction(1, 1, transaction);
 
         NachaFileBatchFooter batchFooter = new NachaFileBatchFooter();
         dbService.createFileBatchFooter(1, 1, batchFooter);

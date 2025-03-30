@@ -20,7 +20,7 @@ public class DbInsertService {
 		this.dbconn = dbconn;
 	}
 
-	public int createFileHeader(int fileId, NachaFileHeader header) throws SQLException {
+	public PreparedStatement createFileHeader(int fileId, NachaFileHeader header) throws SQLException {
 		String sql = """
 				INSERT INTO file_header
 				(file_id, record_type_code, priority_code, immediate_destination, immediate_origin,
@@ -42,10 +42,10 @@ public class DbInsertService {
 		pstmt.setString(12, header.getImmediateDestinationName());
 		pstmt.setString(13, header.getImmediateOriginName());
 		pstmt.setString(14, header.getReferenceCode());
-		return pstmt.executeUpdate();
+		return pstmt;
 	}
 
-	public int createFileBatchHeader(int fileId, int fileBatchId, NachaFileBatchHeader batchHeader)
+	public PreparedStatement createFileBatchHeader(int fileId, int fileBatchId, NachaFileBatchHeader batchHeader)
 			throws SQLException {
 		String sql = """
 				INSERT INTO file_batch_header
@@ -70,11 +70,10 @@ public class DbInsertService {
 		pstmt.setString(13, batchHeader.getOriginStatusCode());
 		pstmt.setString(14, batchHeader.getOriginatingDFIId());
 		pstmt.setString(15, batchHeader.getBatchNumber());
-		return pstmt.executeUpdate();
+		return pstmt;
 	}
 
-	public int createFileTransaction(int fileId, int fileBatchId, NachaFileTransaction transaction)
-			throws SQLException {
+	public PreparedStatement createFileTransactionPstmt() throws SQLException {
 		String sql = """
 				INSERT INTO file_transaction
 				(file_id, file_batch_id, record_type_code, transaction_code, receiving_dfi_id,
@@ -82,6 +81,12 @@ public class DbInsertService {
 				receiving_company_name, discretionary_data, addenda_record_indicator, trace_number)
 				VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);""";
 		PreparedStatement pstmt = dbconn.connect().prepareStatement(sql);
+		return pstmt;
+	}
+
+	public void setFileTransactionPstmt(PreparedStatement pstmt, int fileId, int fileBatchId,
+			NachaFileTransaction transaction)
+			throws SQLException {
 		pstmt.setInt(1, fileId);
 		pstmt.setInt(2, fileBatchId);
 		pstmt.setString(3, transaction.getRecordTypeCode());
@@ -95,10 +100,9 @@ public class DbInsertService {
 		pstmt.setString(11, transaction.getDiscretionaryData());
 		pstmt.setString(12, transaction.getAddendaRecordIndicator());
 		pstmt.setString(13, transaction.getTraceNumber());
-		return pstmt.executeUpdate();
 	}
 
-	public int createFileBatchFooter(int fileId, int fileBatchId, NachaFileBatchFooter batchFooter)
+	public PreparedStatement createFileBatchFooter(int fileId, int fileBatchId, NachaFileBatchFooter batchFooter)
 			throws SQLException {
 		String sql = """
 				INSERT INTO file_batch_footer
@@ -120,10 +124,10 @@ public class DbInsertService {
 		pstmt.setString(11, batchFooter.getReserved());
 		pstmt.setString(12, batchFooter.getOriginatingDFIId());
 		pstmt.setString(13, batchFooter.getBatchNumber());
-		return pstmt.executeUpdate();
+		return pstmt;
 	}
 
-	public int createFileFooter(int fileId, NachaFileFooter footer) throws SQLException {
+	public PreparedStatement createFileFooter(int fileId, NachaFileFooter footer) throws SQLException {
 		String sql = """
 				INSERT INTO file_footer
 				(file_id, record_type_code, batch_count, block_count, entry_addenda_count, entry_hash,
@@ -140,6 +144,6 @@ public class DbInsertService {
 		pstmt.setString(7, footer.getTotalDebitEntry());
 		pstmt.setString(8, footer.getTotalCreditEntry());
 		pstmt.setString(9, footer.getReserved());
-		return pstmt.executeUpdate();
+		return pstmt;
 	}
 }

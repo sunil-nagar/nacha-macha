@@ -35,4 +35,12 @@ public class DbConnection {
 		stmt.close();
 	}
 
+    public void setAutoCommit(boolean b) throws SQLException {
+		conn.setAutoCommit(b);
+    }
+
+    public void commit() throws SQLException {
+		conn.commit();
+    }
+
 }

@@ -44,7 +44,7 @@ public class DbBatch {
 		conn.commit();
 	}
 
-	public void finalize() throws SQLException {
+	public void finalizex() throws SQLException {
 		log.info("finalize", sql);
 		commit();
 		pstmt.close();
