@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import nm.db.DbConnection;
-import nm.db.DbInsertService;
 import nm.db.DbService;
 import nm.parse.NachaFileLine;
 import nm.parse.NachaLineParser;

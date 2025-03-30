@@ -75,7 +75,6 @@ public class DbInsertService {
 
 	public int createFileTransaction(int fileId, int fileBatchId, NachaFileTransaction transaction)
 			throws SQLException {
-		System.out.println(transaction);
 		String sql = """
 				INSERT INTO file_transaction
 				(file_id, file_batch_id, record_type_code, transaction_code, receiving_dfi_id,
