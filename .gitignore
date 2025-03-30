@@ -1,6 +1,8 @@
 bin/
 ./house.db
+./house.db-journal
 *.db
+*.db-journal
 testfiles/
 
 # Compiled class file
