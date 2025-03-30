@@ -46,6 +46,31 @@ public class Test {
         }
     }
 
+    public static void processFiles(FBQueueSystem fbqs, DbConnection dbconn, DbService dbService) throws IOException {
+        // String[] files = NachaParser.getFiles("20250330", "001");
+        // String nachaFileDir = "/Users/nagars/Dev/nacha-macha/testfiles/";
+        // for (int i = 0; i < files.length; i++) {
+        String file = "";
+        while ((file = fbqs.next()) != null) {
+            Timer.start("file");
+            // String filename = files[i];
+            // String filePath = nachaFileDir + "/" + filename;
+            String filePath = file;
+            try {
+                processFile(filePath, dbconn, dbService);
+                System.out.println("Completed " + file);
+                fbqs.complete();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Failover " + file);
+                fbqs.fail();
+            }
+            Timer.stop("file");
+        }
+        Timer.stop("main");
+    }
+
+
     public static FBQueueSystem queue(String origin) throws IOException {
         FBQueueSystem fbqs = new FBQueueSystem(origin);
         fbqs.init();
@@ -62,27 +87,11 @@ public class Test {
         Timer.start("reset");
         dbService.reset();
         Timer.stop("reset");
-        // String[] files = NachaParser.getFiles("20250330", "001");
-        // String nachaFileDir = "/Users/nagars/Dev/nacha-macha/testfiles/";
         FBQueueSystem fbqs = queue("/Users/nagars/Dev/nacha-macha/testfiles/");
-        // for (int i = 0; i < files.length; i++) {
-        String file = "";
-        while ((file = fbqs.next()) != null) {
-            Timer.start("file");
-            // String filename = files[i];
-            // String filePath = nachaFileDir + "/" + filename;
-            String filePath = file;
-            try {
-                processFile(filePath, dbconn, dbService);
-                System.out.println("Completed " + file);
-                fbqs.complete();
-            } catch (Exception e) {
-                System.out.println("Failover " + file);
-                fbqs.fail();
-                e.printStackTrace();
-            }
-            Timer.stop("file");
+        processFiles(fbqs, dbconn, dbService);
+        if (fbqs.hasFailures()) {
+            fbqs.initFailover();
+            processFiles(fbqs, dbconn, dbService);
         }
-        Timer.stop("main");
     }
 }

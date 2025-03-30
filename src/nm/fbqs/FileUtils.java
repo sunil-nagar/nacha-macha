@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -25,22 +26,36 @@ public class FileUtils {
                 .map(File::getName)
                 .collect(Collectors.toSet());
         List<String> files = new ArrayList<>(fileset);
-        for (int i=0; i<files.size(); i++) {
+        for (int i = 0; i < files.size(); i++) {
             files.set(i, dir + "/" + files.get(i));
         }
         Collections.sort(files);
         return files.toArray(new String[files.size()]);
     }
 
+    public static void moveFiles(String source, String dest) throws IOException {
+        File srcdir = new File(source);
+        File[] files = srcdir.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    Path sourcePath = Paths.get(file.getPath());
+                    Path destinationPath = Paths.get(dest, file.getName());
+                    Files.move(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+                }
+            }
+        }
+    }
+
     public static void moveFile(String source, String dest) throws IOException {
         System.out.println("FileUtils.moveFile " + source + " " + dest);
-        Files.move(Paths.get(source), Paths.get(dest), StandardCopyOption.REPLACE_EXISTING);
+        Files.move(Paths.get(source), Paths.get(dest, new File(source).getName()), StandardCopyOption.REPLACE_EXISTING);
     }
 
     public static void copyFiles(String source, String dest) throws IOException {
         System.out.println("FileUtils.copyFiles " + source + " " + dest);
         String[] files = listFiles(source);
-        for (int i=0; i<files.length; i++) {
+        for (int i = 0; i < files.length; i++) {
             File sourceFile = new File(files[i]);
             File destFile = new File(dest + sourceFile.getName());
             copyFile(sourceFile, destFile);

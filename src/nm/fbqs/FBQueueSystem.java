@@ -35,11 +35,19 @@ public class FBQueueSystem {
     }
 
     public void complete() throws IOException {
-        FileUtils.moveFile(current, Config.FAILOVER_DIR);
+        FileUtils.moveFile(current, Config.COMPLETE_DIR);
     }
 
     public boolean hasFailures() {
         return FileUtils.listFiles(Config.FAILOVER_DIR).length > 0;
+    }
+
+    public void initFailover() throws IOException {
+        // copy files from source to inbound
+        FileUtils.moveFiles(Config.FAILOVER_DIR, Config.INBOUND_DIR);
+        // Create list of files to process
+        this.inboundQueue = new ArrayList<String>(Arrays.asList(FileUtils.listFiles(Config.INBOUND_DIR)));
+
     }
 
 
