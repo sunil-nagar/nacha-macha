@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import nm.db.DbConnection;
 import nm.db.DbService;
+import nm.model.NachaFileBatchFooter;
 import nm.model.NachaFileBatchHeader;
 import nm.model.NachaFileHeader;
 import nm.model.NachaFileTransaction;
@@ -23,6 +24,9 @@ public class TestDb {
 
         NachaFileTransaction transaction = new NachaFileTransaction();
         dbService.createFileTransaction(1, 1, transaction);
+
+        NachaFileBatchFooter batchFooter = new NachaFileBatchFooter();
+        dbService.createFileBatchFooter(1, 1, batchFooter);
 
     }
 }
