@@ -3,6 +3,7 @@ package nm.test;
 import java.sql.SQLException;
 
 import nm.db.DbConnection;
+import nm.db.DbQueryService;
 import nm.db.DbService;
 import nm.model.NachaFileBatchFooter;
 import nm.model.NachaFileBatchHeader;
@@ -16,6 +17,7 @@ public class TestDb {
         String dbfile = "/Users/nagars/Dev/nacha-macha/house.db";
         DbConnection dbconn = new DbConnection(dbfile);
         DbService dbService = new DbService(dbconn);
+        DbQueryService dbQueryService = new DbQueryService(dbconn);
 
         NachaFileHeader header = new NachaFileHeader(1);
         dbService.createFileHeader(1, header);
@@ -31,6 +33,9 @@ public class TestDb {
 
         NachaFileFooter footer = new NachaFileFooter();
         dbService.createFileFooter(1, footer);
+
+        int fileId = dbQueryService.getFileId(header);
+        System.out.println("fileId="+fileId);
 
     }
 }
