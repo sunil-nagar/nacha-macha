@@ -23,7 +23,7 @@ public class DbService {
 				(file_id, record_type_code, priority_code, immediate_destination, immediate_origin,
 				file_creation_date, file_creation_time, file_id_modifier, record_size, blocking_factor,
 				format_code, immediate_destination_name, immediate_origin_name, reference_code)
-				VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);""";
+				VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);""";
 		PreparedStatement pstmt = dbconn.connect().prepareStatement(sql);
 		pstmt.setInt(1, fileId);
 		pstmt.setString(2, header.getRecordTypeCode());

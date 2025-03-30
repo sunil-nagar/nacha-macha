@@ -1,13 +1,13 @@
 package nm.db;
 
 import java.sql.SQLException;
-import java.sql.Statement;
+// import java.sql.Statement;
 
-import nm.utils.Log;
+// import nm.utils.Log;
 
 public class DbInitialize {
 
-	private static final Log log = new Log(DbInitialize.class);
+	// private static final Log log = new Log(DbInitialize.class);
 
 	private DbConnection dbconn;
 
@@ -34,6 +34,7 @@ public class DbInitialize {
 					immediate_destination_name TEXT(23),
 					immediate_origin_name TEXT(23),
 					reference_code TEXT(8))""";
+		dbconn.execute(sql);
 	}
 
 	public void createFileBatchHeaderTable() throws SQLException, Exception {
@@ -55,6 +56,7 @@ public class DbInitialize {
 					origin_status_code TEXT(1),
 					originating_dfi_id TEXT(8),
 					batch_number TEXT(7))""";
+		dbconn.execute(sql);
 	}
 
 	public void createFileTransactionTable() throws SQLException, Exception {
@@ -74,6 +76,7 @@ public class DbInitialize {
 					discretionary_data TEXT(2),
 					addenda_record_indicator TEXT(1),
 					trace_number TEXT(15))""";
+		dbconn.execute(sql);
 	}
 
 	public void createFileBatchFooterTable() throws SQLException, Exception {
@@ -93,6 +96,7 @@ public class DbInitialize {
 					reserved TEXT(6),
 					originating_dfi_id TEXT(8),
 					batch_number TEXT(7))""";
+		dbconn.execute(sql);
 	}
 
 	public void createFileFooterTable() throws SQLException, Exception {
@@ -108,6 +112,7 @@ public class DbInitialize {
 					total_debit_entry TEXT(12),
 					total_credit_entry TEXT(12),
 					reserved TEXT(39))""";
+		dbconn.execute(sql);
 	}
 
 }
