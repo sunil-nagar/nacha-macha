@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import nm.model.NachaFileBatchFooter;
 import nm.model.NachaFileBatchHeader;
+import nm.model.NachaFileFooter;
 import nm.model.NachaFileHeader;
 import nm.model.NachaFileTransaction;
 // import nm.utils.Log;
@@ -120,6 +121,26 @@ public class DbService {
 		pstmt.setString(11, batchFooter.getReserved());
 		pstmt.setString(12, batchFooter.getOriginatingDFIId());
 		pstmt.setString(13, batchFooter.getBatchNumber());
+		return pstmt.executeUpdate();
+	}
+
+	public int createFileFooter(int fileId, NachaFileFooter footer) throws SQLException {
+		String sql = """
+				INSERT INTO file_footer
+				(file_id, record_type_code, batch_count, block_count, entry_addenda_count, entry_hash,
+				total_debit_entry, total_credit_entry, reserved)
+				VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
+				""";
+		PreparedStatement pstmt = dbconn.connect().prepareStatement(sql);
+		pstmt.setInt(1, fileId);
+		pstmt.setString(2, footer.getRecordTypeCode());
+		pstmt.setString(3, footer.getBatchCount());
+		pstmt.setString(4, footer.getBlockCount());
+		pstmt.setString(5, footer.getEntryAddendaCount());
+		pstmt.setString(6, footer.getEntryHash());
+		pstmt.setString(7, footer.getTotalDebitEntry());
+		pstmt.setString(8, footer.getTotalCreditEntry());
+		pstmt.setString(9, footer.getReserved());
 		return pstmt.executeUpdate();
 	}
 }

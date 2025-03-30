@@ -6,6 +6,7 @@ import nm.db.DbConnection;
 import nm.db.DbService;
 import nm.model.NachaFileBatchFooter;
 import nm.model.NachaFileBatchHeader;
+import nm.model.NachaFileFooter;
 import nm.model.NachaFileHeader;
 import nm.model.NachaFileTransaction;
 
@@ -27,6 +28,9 @@ public class TestDb {
 
         NachaFileBatchFooter batchFooter = new NachaFileBatchFooter();
         dbService.createFileBatchFooter(1, 1, batchFooter);
+
+        NachaFileFooter footer = new NachaFileFooter();
+        dbService.createFileFooter(1, footer);
 
     }
 }
