@@ -31,7 +31,7 @@ public class Test {
 
             String[] files = NachaParser.getFiles("20250330", "001");
             String nachaFileDir = "/Users/nagars/Dev/nacha-macha/testfiles/";
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < files.length; i++) {
                 Timer.start("file");
 
                 String filename = files[i];
@@ -49,9 +49,6 @@ public class Test {
                         if (NachaFileLine.BATCH_HEADER.equals(nachaFileLine.getType()))
                             batchId++;
                         if (nachaFileLine instanceof NachaFileTransaction) {
-                            int x = 1;
-                            // dbService.createFileTransaction(fileId, batchId, (NachaFileTransaction)
-                            // nachaFileLine);
                             dbService.setFileTransactionPstmt(transactionPstmt, fileId, batchId, (NachaFileTransaction) nachaFileLine);
                             transactionPstmt.addBatch();
                         } else {

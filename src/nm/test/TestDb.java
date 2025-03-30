@@ -9,7 +9,7 @@ import nm.model.NachaFileBatchFooter;
 import nm.model.NachaFileBatchHeader;
 import nm.model.NachaFileFooter;
 import nm.model.NachaFileHeader;
-import nm.model.NachaFileTransaction;
+// import nm.model.NachaFileTransaction;
 
 public class TestDb {
 
@@ -25,7 +25,7 @@ public class TestDb {
         NachaFileBatchHeader batchHeader = new NachaFileBatchHeader();
         dbService.createFileBatchHeader(1, 1, batchHeader);
 
-        NachaFileTransaction transaction = new NachaFileTransaction();
+        // NachaFileTransaction transaction = new NachaFileTransaction();
         // dbService.createFileTransaction(1, 1, transaction);
 
         NachaFileBatchFooter batchFooter = new NachaFileBatchFooter();
