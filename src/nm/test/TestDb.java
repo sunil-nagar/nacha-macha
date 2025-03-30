@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import nm.db.DbConnection;
 import nm.db.DbQueryService;
-import nm.db.DbService;
+import nm.db.DbInsertService;
 import nm.model.NachaFileBatchFooter;
 import nm.model.NachaFileBatchHeader;
 import nm.model.NachaFileFooter;
@@ -16,7 +16,7 @@ public class TestDb {
     public static void main(String[] args) throws SQLException {
         String dbfile = "/Users/nagars/Dev/nacha-macha/house.db";
         DbConnection dbconn = new DbConnection(dbfile);
-        DbService dbService = new DbService(dbconn);
+        DbInsertService dbService = new DbInsertService(dbconn);
         DbQueryService dbQueryService = new DbQueryService(dbconn);
 
         NachaFileHeader header = new NachaFileHeader(1);
