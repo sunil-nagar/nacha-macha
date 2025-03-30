@@ -1,6 +1,6 @@
 package temp;
 
-public class NachaFileHeader {
+public class NachaFileHeader extends NachaFileLine {
 
     public NachaFileHeader() {
     }

@@ -1,6 +1,6 @@
 package temp;
 
-public class NachaFileBatchHeader {
+public class NachaFileBatchHeader extends NachaFileLine {
     // 1-1 1 Record Type Code 5 Constant
     private String recordTypeCode = "5";
 
@@ -85,6 +85,110 @@ public class NachaFileBatchHeader {
                 standardEntryClassCode + companyEntryDescription + companyDescriptiveDate + effectiveEntryDate
                 + reserved
                 + originStatusCode + originatingDFIId + batchNumber;
+    }
+
+    public String getRecordTypeCode() {
+        return recordTypeCode;
+    }
+
+    public void setRecordTypeCode(String recordTypeCode) {
+        this.recordTypeCode = recordTypeCode;
+    }
+
+    public String getServiceClassCode() {
+        return serviceClassCode;
+    }
+
+    public void setServiceClassCode(String serviceClassCode) {
+        this.serviceClassCode = serviceClassCode;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyDiscretionaryData() {
+        return companyDiscretionaryData;
+    }
+
+    public void setCompanyDiscretionaryData(String companyDiscretionaryData) {
+        this.companyDiscretionaryData = companyDiscretionaryData;
+    }
+
+    public String getCompanyIdentification() {
+        return companyIdentification;
+    }
+
+    public void setCompanyIdentification(String companyIdentification) {
+        this.companyIdentification = companyIdentification;
+    }
+
+    public String getStandardEntryClassCode() {
+        return standardEntryClassCode;
+    }
+
+    public void setStandardEntryClassCode(String standardEntryClassCode) {
+        this.standardEntryClassCode = standardEntryClassCode;
+    }
+
+    public String getCompanyEntryDescription() {
+        return companyEntryDescription;
+    }
+
+    public void setCompanyEntryDescription(String companyEntryDescription) {
+        this.companyEntryDescription = companyEntryDescription;
+    }
+
+    public String getCompanyDescriptiveDate() {
+        return companyDescriptiveDate;
+    }
+
+    public void setCompanyDescriptiveDate(String companyDescriptiveDate) {
+        this.companyDescriptiveDate = companyDescriptiveDate;
+    }
+
+    public String getEffectiveEntryDate() {
+        return effectiveEntryDate;
+    }
+
+    public void setEffectiveEntryDate(String effectiveEntryDate) {
+        this.effectiveEntryDate = effectiveEntryDate;
+    }
+
+    public String getReserved() {
+        return reserved;
+    }
+
+    public void setReserved(String reserved) {
+        this.reserved = reserved;
+    }
+
+    public String getOriginStatusCode() {
+        return originStatusCode;
+    }
+
+    public void setOriginStatusCode(String originStatusCode) {
+        this.originStatusCode = originStatusCode;
+    }
+
+    public String getOriginatingDFIId() {
+        return originatingDFIId;
+    }
+
+    public void setOriginatingDFIId(String originatingDFIId) {
+        this.originatingDFIId = originatingDFIId;
+    }
+
+    public String getBatchNumber() {
+        return batchNumber;
+    }
+
+    public void setBatchNumber(String batchNumber) {
+        this.batchNumber = batchNumber;
     }
 
 }

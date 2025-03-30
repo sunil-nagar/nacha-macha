@@ -1,6 +1,6 @@
 package temp;
 
-public class NachaFileTransaction {
+public class NachaFileTransaction extends NachaFileLine {
 
     // 1-1 1 Record Type Code 6 Constant
     private String recordTypeCode = "6";
@@ -68,5 +68,93 @@ public class NachaFileTransaction {
                 identificationNumber + receivingCompanyName + discretionaryData + addendaRecordIndicator
                 + traceNumber;
     }
-}
 
+    public String getRecordTypeCode() {
+        return recordTypeCode;
+    }
+
+    public void setRecordTypeCode(String recordTypeCode) {
+        this.recordTypeCode = recordTypeCode;
+    }
+
+    public String getTransactionCode() {
+        return transactionCode;
+    }
+
+    public void setTransactionCode(String transactionCode) {
+        this.transactionCode = transactionCode;
+    }
+
+    public String getReceivingDFIId() {
+        return receivingDFIId;
+    }
+
+    public void setReceivingDFIId(String receivingDFIId) {
+        this.receivingDFIId = receivingDFIId;
+    }
+
+    public String getCheckDigit() {
+        return checkDigit;
+    }
+
+    public void setCheckDigit(String checkDigit) {
+        this.checkDigit = checkDigit;
+    }
+
+    public String getDfiAccountNumber() {
+        return dfiAccountNumber;
+    }
+
+    public void setDfiAccountNumber(String dfiAccountNumber) {
+        this.dfiAccountNumber = dfiAccountNumber;
+    }
+
+    public String getTransactionAmount() {
+        return transactionAmount;
+    }
+
+    public void setTransactionAmount(String transactionAmount) {
+        this.transactionAmount = transactionAmount;
+    }
+
+    public String getIdentificationNumber() {
+        return identificationNumber;
+    }
+
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
+    }
+
+    public String getReceivingCompanyName() {
+        return receivingCompanyName;
+    }
+
+    public void setReceivingCompanyName(String receivingCompanyName) {
+        this.receivingCompanyName = receivingCompanyName;
+    }
+
+    public String getDiscretionaryData() {
+        return discretionaryData;
+    }
+
+    public void setDiscretionaryData(String discretionaryData) {
+        this.discretionaryData = discretionaryData;
+    }
+
+    public String getAddendaRecordIndicator() {
+        return addendaRecordIndicator;
+    }
+
+    public void setAddendaRecordIndicator(String addendaRecordIndicator) {
+        this.addendaRecordIndicator = addendaRecordIndicator;
+    }
+
+    public String getTraceNumber() {
+        return traceNumber;
+    }
+
+    public void setTraceNumber(String traceNumber) {
+        this.traceNumber = traceNumber;
+    }
+
+}

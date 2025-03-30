@@ -1,6 +1,6 @@
 package temp;
 
-public class NachaFileFooter {
+public class NachaFileFooter extends NachaFileLine {
 
     // 1-1 1 Record Type Code 9 Constant
     private String recordTypeCode = "9";

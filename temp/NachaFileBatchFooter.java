@@ -1,7 +1,7 @@
 package temp;
 
-public class NachaFileBatchFooter {
-    // 1-1 1 Record Type Code 5 Constant
+public class NachaFileBatchFooter extends NachaFileLine {
+    // 1-1 1 Record Type Code 8 Constant
     private String recordTypeCode = "8";
 
     // 2-4 3 Service Class Code 200, 220, 225
@@ -67,6 +67,94 @@ public class NachaFileBatchFooter {
         return "" + recordTypeCode + serviceClassCode + entryAddendaCount + entryHash + totalDebitEntry +
                 totalCreditEntry + companyIdentification + messageAuthenticationCode + reserved + originatingDFIId
                 + batchNumber;
+    }
+
+    public String getRecordTypeCode() {
+        return recordTypeCode;
+    }
+
+    public void setRecordTypeCode(String recordTypeCode) {
+        this.recordTypeCode = recordTypeCode;
+    }
+
+    public String getServiceClassCode() {
+        return serviceClassCode;
+    }
+
+    public void setServiceClassCode(String serviceClassCode) {
+        this.serviceClassCode = serviceClassCode;
+    }
+
+    public String getEntryAddendaCount() {
+        return entryAddendaCount;
+    }
+
+    public void setEntryAddendaCount(String entryAddendaCount) {
+        this.entryAddendaCount = entryAddendaCount;
+    }
+
+    public String getEntryHash() {
+        return entryHash;
+    }
+
+    public void setEntryHash(String entryHash) {
+        this.entryHash = entryHash;
+    }
+
+    public String getTotalDebitEntry() {
+        return totalDebitEntry;
+    }
+
+    public void setTotalDebitEntry(String totalDebitEntry) {
+        this.totalDebitEntry = totalDebitEntry;
+    }
+
+    public String getTotalCreditEntry() {
+        return totalCreditEntry;
+    }
+
+    public void setTotalCreditEntry(String totalCreditEntry) {
+        this.totalCreditEntry = totalCreditEntry;
+    }
+
+    public String getCompanyIdentification() {
+        return companyIdentification;
+    }
+
+    public void setCompanyIdentification(String companyIdentification) {
+        this.companyIdentification = companyIdentification;
+    }
+
+    public String getMessageAuthenticationCode() {
+        return messageAuthenticationCode;
+    }
+
+    public void setMessageAuthenticationCode(String messageAuthenticationCode) {
+        this.messageAuthenticationCode = messageAuthenticationCode;
+    }
+
+    public String getReserved() {
+        return reserved;
+    }
+
+    public void setReserved(String reserved) {
+        this.reserved = reserved;
+    }
+
+    public String getOriginatingDFIId() {
+        return originatingDFIId;
+    }
+
+    public void setOriginatingDFIId(String originatingDFIId) {
+        this.originatingDFIId = originatingDFIId;
+    }
+
+    public String getBatchNumber() {
+        return batchNumber;
+    }
+
+    public void setBatchNumber(String batchNumber) {
+        this.batchNumber = batchNumber;
     }
 
 }
