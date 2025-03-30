@@ -1,4 +1,4 @@
-package src.nm.io;
+package nm.io;
 
 
 import java.io.BufferedWriter;

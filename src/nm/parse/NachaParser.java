@@ -1,4 +1,4 @@
-package src.nm.parse;
+package nm.parse;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

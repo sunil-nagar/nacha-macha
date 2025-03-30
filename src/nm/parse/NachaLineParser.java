@@ -1,10 +1,10 @@
-package src.nm.parse;
+package nm.parse;
 
-import src.nm.model.NachaFileBatchFooter;
-import src.nm.model.NachaFileBatchHeader;
-import src.nm.model.NachaFileFooter;
-import src.nm.model.NachaFileHeader;
-import src.nm.model.NachaFileTransaction;
+import nm.model.NachaFileBatchFooter;
+import nm.model.NachaFileBatchHeader;
+import nm.model.NachaFileFooter;
+import nm.model.NachaFileHeader;
+import nm.model.NachaFileTransaction;
 
 public class NachaLineParser {
 

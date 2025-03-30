@@ -1,4 +1,4 @@
-package src.nm.model;
+package nm.model;
 
 public class Nacha {
     

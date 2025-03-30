@@ -1,4 +1,4 @@
-package src.nm.parse;
+package nm.parse;
 
 public class LineChomper {
 

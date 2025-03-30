@@ -1,7 +1,7 @@
-package src.nm.model;
+package nm.model;
 
-import src.nm.data.DataGenerator;
-import src.nm.parse.NachaFileLine;
+import nm.data.DataGenerator;
+import nm.parse.NachaFileLine;
 
 public class NachaFileBatchFooter extends NachaFileLine {
     // 1-1 1 Record Type Code 8 Constant

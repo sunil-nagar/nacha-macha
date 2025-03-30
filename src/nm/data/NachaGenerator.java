@@ -1,13 +1,13 @@
-package src.nm.data;
+package nm.data;
 
 import java.io.IOException;
 
-import src.nm.io.FileUtils;
-import src.nm.model.NachaFileBatchFooter;
-import src.nm.model.NachaFileBatchHeader;
-import src.nm.model.NachaFileFooter;
-import src.nm.model.NachaFileHeader;
-import src.nm.model.NachaFileTransaction;
+import nm.io.FileUtils;
+import nm.model.NachaFileBatchFooter;
+import nm.model.NachaFileBatchHeader;
+import nm.model.NachaFileFooter;
+import nm.model.NachaFileHeader;
+import nm.model.NachaFileTransaction;
 
 public class NachaGenerator {
 

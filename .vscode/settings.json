@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.referencedLibraries": [
+        "/Users/nagars/Dev/nacha-macha/lib/sqlite-jdbc-3.49.1.0.jar"
+    ]
+}

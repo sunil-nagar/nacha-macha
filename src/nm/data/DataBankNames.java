@@ -1,4 +1,4 @@
-package src.nm.data;
+package nm.data;
 
 public class DataBankNames {
 

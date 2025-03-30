@@ -1,4 +1,4 @@
-package src.nm.data;
+package nm.data;
 
 import java.util.Random;
 import java.lang.Math;
