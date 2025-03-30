@@ -52,33 +52,37 @@ public class Test {
         return fbqs;
     }
 
-    public static void main(String[] args) {
-        try {
-            Timer.start("main");
-            String dbfile = "/Users/nagars/Dev/nacha-macha/house.db";
-            DbConnection dbconn = new DbConnection(dbfile);
-            dbconn.connect();
-            dbconn.setAutoCommit(false);
-            DbService dbService = new DbService(dbconn);
-            Timer.start("reset");
-            dbService.reset();
-            Timer.stop("reset");
-            // String[] files = NachaParser.getFiles("20250330", "001");
-            // String nachaFileDir = "/Users/nagars/Dev/nacha-macha/testfiles/";
-            FBQueueSystem fbqs = queue("/Users/nagars/Dev/nacha-macha/testfiles/");
-            // for (int i = 0; i < files.length; i++) {
-            String file = "";
-            while ((file = fbqs.next()) != null) {
-                Timer.start("file");
-                // String filename = files[i];
-                // String filePath = nachaFileDir + "/" + filename;
-                String filePath = file;
+    public static void main(String[] args) throws Exception {
+        Timer.start("main");
+        String dbfile = "/Users/nagars/Dev/nacha-macha/house.db";
+        DbConnection dbconn = new DbConnection(dbfile);
+        dbconn.connect();
+        dbconn.setAutoCommit(false);
+        DbService dbService = new DbService(dbconn);
+        Timer.start("reset");
+        dbService.reset();
+        Timer.stop("reset");
+        // String[] files = NachaParser.getFiles("20250330", "001");
+        // String nachaFileDir = "/Users/nagars/Dev/nacha-macha/testfiles/";
+        FBQueueSystem fbqs = queue("/Users/nagars/Dev/nacha-macha/testfiles/");
+        // for (int i = 0; i < files.length; i++) {
+        String file = "";
+        while ((file = fbqs.next()) != null) {
+            Timer.start("file");
+            // String filename = files[i];
+            // String filePath = nachaFileDir + "/" + filename;
+            String filePath = file;
+            try {
                 processFile(filePath, dbconn, dbService);
-                Timer.stop("file");
+                System.out.println("Completed " + file);
+                fbqs.complete();
+            } catch (Exception e) {
+                System.out.println("Failover " + file);
+                fbqs.fail();
+                e.printStackTrace();
             }
-            Timer.stop("main");
-        } catch (Exception e) {
-            e.printStackTrace();
+            Timer.stop("file");
         }
+        Timer.stop("main");
     }
 }
